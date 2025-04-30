@@ -1,0 +1,349 @@
+{
+  "swagger": "2.0",
+  "x-stoplight": {
+    "id": "ui9ote8l391bi"
+  },
+  "info": {
+    "title": "2.0J",
+    "version": "1.0"
+  },
+  "host": "localhost:3000",
+  "schemes": [
+    "http"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/users/{userId}": {
+      "parameters": [
+        {
+          "type": "integer",
+          "name": "userId",
+          "in": "path",
+          "required": true,
+          "description": "Id of an existing user."
+        }
+      ],
+      "get": {
+        "summary": "Get User Info by User ID",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "User Found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "Get User Alice Smith": {
+                "id": 142,
+                "firstName": "Alice",
+                "lastName": "Smith",
+                "email": "alice.smith@gmail.com",
+                "dateOfBirth": "1997-10-31",
+                "emailVerified": true,
+                "signUpDate": "2019-08-24"
+              }
+            }
+          },
+          "404": {
+            "description": "User Not Found",
+            "schema": {
+              "type": "object",
+              "x-nullable": true,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "t6wdw9yojbd22"
+                  }
+                },
+                "ref": {
+                  "$ref": "stoplight://resources/overrides/REyNIqPBd1A"
+                }
+              }
+            },
+            "examples": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-users-userId",
+        "description": "Retrieve the information of the user with the matching user ID.",
+        "x-stoplight": {
+          "id": "tmn5953zuyu6n"
+        }
+      },
+      "patch": {
+        "summary": "Update User Information",
+        "operationId": "patch-users-userId",
+        "responses": {
+          "200": {
+            "description": "User Updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "Update User Rebecca Baker": {
+                "id": 13,
+                "firstName": "Rebecca",
+                "lastName": "Baker",
+                "email": "rebecca@gmail.com",
+                "dateOfBirth": "1985-10-02",
+                "emailVerified": false,
+                "createDate": "2019-08-24"
+              }
+            }
+          },
+          "404": {
+            "description": "User Not Found",
+            "schema": {
+              "type": "null"
+            }
+          },
+          "409": {
+            "description": "Email Already Taken",
+            "schema": {
+              "type": "null"
+            }
+          }
+        },
+        "description": "Update the information of an existing user.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string",
+                  "description": "If a new email is given, the user's email verified property will be set to false."
+                },
+                "dateOfBirth": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Patch user properties to update.",
+            "x-examples": {
+              "Update First Name": {
+                "firstName": "Rebecca"
+              },
+              "Update Email": {
+                "email": "rebecca@gmail.com"
+              },
+              "Update Last Name & Date of Birth": {
+                "lastName": "Baker",
+                "dateOfBirth": "1985-10-02"
+              }
+            }
+          }
+        ],
+        "x-stoplight": {
+          "id": "44rg23kch8vij"
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "summary": "Create New User",
+        "operationId": "post-user",
+        "responses": {
+          "200": {
+            "description": "User Created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Missing Required Information",
+            "schema": {
+              "type": "null"
+            }
+          },
+          "409": {
+            "description": "Email Already Taken",
+            "schema": {
+              "type": "null"
+            }
+          }
+        },
+        "description": "Create a new user.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "dateOfBirth": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "dateOfBirth"
+              ]
+            },
+            "description": "Post the necessary fields for the API to create a new user.",
+            "x-examples": {
+              "Create User Bob Fellow": {
+                "firstName": "Bob",
+                "lastName": "Fellow",
+                "email": "bob.fellow@gmail.com",
+                "dateOfBirth": "1996-08-24"
+              }
+            }
+          }
+        ],
+        "x-stoplight": {
+          "id": "uy78pl6rauqob"
+        }
+      }
+    },
+    "/new path/test": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-new-path-test",
+        "x-stoplight": {
+          "id": "f1ilwx7d2v9ld"
+        }
+      },
+      "put": {
+        "summary": "Your PUT endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "put-new-path-test",
+        "x-stoplight": {
+          "id": "0fjtwq07ykd18"
+        }
+      },
+      "delete": {
+        "summary": "Your DELETE endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "delete-new-path-test",
+        "x-stoplight": {
+          "id": "bvfm8nqt5nk9t"
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "wd28ocn0r3v98"
+                  }
+                },
+                "refer": {
+                  "$ref": "stoplight://resources/overrides/REyNIqPBd1A"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "title": "User",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier for the given user.",
+          "x-stoplight": {
+            "id": "ri66fixp5eim9"
+          }
+        },
+        "firstName": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "0xf35b7tpyvkt"
+          }
+        },
+        "lastName": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "uxbo7vodxhgx2"
+          }
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "x-stoplight": {
+            "id": "c9i4d73v59ueg"
+          }
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "example": "1997-10-31",
+          "x-stoplight": {
+            "id": "o44tdzckz3bn3"
+          }
+        },
+        "emailVerified": {
+          "type": "boolean",
+          "description": "Set to true if the user's email has been verified.",
+          "x-stoplight": {
+            "id": "o1yv2yqujnes7"
+          }
+        },
+        "createDate": {
+          "type": "string",
+          "format": "date",
+          "description": "The date that the user was created.",
+          "x-stoplight": {
+            "id": "zoc6nfcewfl8k"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "firstName",
+        "lastName",
+        "email",
+        "emailVerified"
+      ],
+      "x-stoplight": {
+        "id": "wjd6p3b01nave"
+      }
+    }
+  }
+}
